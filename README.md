@@ -10,3 +10,19 @@
 ![Rasp](https://img.shields.io/badge/Raspberry%20Pi-gray?style=for-the-badge&logo=Raspberry%20Pi)
 
 </div>
+
+## Overview
+
+
+## Repository Contents
+ 
+
+## Prerequisites
+Before using the codes in this repository, ensure you have the following prerequisites:
+- [STM32 Nucleo-F103RB Module](https://www.st.com/en/evaluation-tools/nucleo-f103rb.html)
+- [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
+- [Python](https://www.python.org/downloads/)
+- [Raspberry Pi](https://www.raspberrypi.com/products/)
+- C Compiler (e.g., GCC)
+
+## Usage
