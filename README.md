@@ -24,5 +24,10 @@ Before using the codes in this repository, ensure you have the following prerequ
 - [Python](https://www.python.org/downloads/)
 - [Raspberry Pi](https://www.raspberrypi.com/products/)
 - C Compiler (e.g., GCC)
+- A potentiometer
+- An LCD (Liquid Crystal Display)
+- A breadboard
+- An FTDI module
+- A matrix keypad
 
 ## Usage
