@@ -8,28 +8,28 @@
 import os
 
 # Define the number of variables in the data
-NUMBER_OF_VARIABLES = 3
+nVariables = 3
 
-# Define bounds for engine speed, vehicle speed, and gear
-ENGINE_SPEED_BOUNDS = [0, 6000]
-VEHICLE_SPEED_BOUNDS = [0, 200]
-GEAR_BOUNDS = [1, 4]
+# Define bounds for engine speed, vehicle speed/tractor speed, and gear
+engSpeed = [0, 6000]
+tractSpeed = [0, 200]
+gears = [1, 4]
 
 # Define size for plot
-PLOT_SIZE = (6, 7)
+plotSize = (12, 8)
 
-# Define range for x-axis in plot
-X_RANGE = 20
+# Define range for x-axis in plot (for time)
+xRange = 20
 
 # Get the base path of the current file
-BASE_PATH = os.path.dirname(os.path.realpath(__file__))
+currentPath = os.path.dirname(os.path.realpath(__file__))
 
 # Create a path to the CSV file within the base path
-CSV_FILE_PATH = os.path.join(BASE_PATH, "E2Data.csv")
+csvPath = os.path.join(currentPath, "E2Data.csv")
 
 # Define the serial port based on the operating system
-SERIAL_PORT = "COM7"            # Windows
-# SERIAL_PORT = "/dev/ttyS0"    # Debian
+sPort = "COM7"            # Windows
+# sPort = "/dev/ttyS0"    # Debian
 
 # Define baudrate for serial communication
-BAUDRATE = 115200
+baudrate = 115200
