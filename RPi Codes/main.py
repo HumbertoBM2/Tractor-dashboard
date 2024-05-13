@@ -1,104 +1,104 @@
-# Library imports
+# Team 2
+# Humberto Barrera
+# Catalina Muñoz
+# Mauricio Zavala
+# Erick Campos
 
-import sys
+
+# Libraries
+import numpy as np
+import csv
+import serial
 import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg
+from matplotlib.animation import FuncAnimation
 
-# Code imports
+import config  # Import configuration file parameters
 
-import game_settings
-from plot import run_plot
+# Generate x values based on the defined X_RANGE in the config
+x_values = list(range(0, config.X_RANGE))
 
+# Create an array to store parameter values, initialized with zeros
+parameters_values = np.zeros((config.X_RANGE, config.NUMBER_OF_VARIABLES))
 
-# Game loop
+# Create subplots for each parameter with specified plot size
+fig, axes = plt.subplots(config.NUMBER_OF_VARIABLES, 1, figsize=config.PLOT_SIZE)
+fig.subplots_adjust(hspace=0.5)
 
-def game() :
+# Create scatter plots for each parameter
+scatter_plots = [ax.plot(x_values, parameters_values[:, i], 'g-')[0] for i, ax in enumerate(axes)]
 
-    run = True
-    clock = game_settings.pg.time.Clock()
+# Set x-axis label for each subplot
+for i in range(config.NUMBER_OF_VARIABLES):
+    axes[i].set_xlabel('Time')
 
-    # Fetch fig from the plot module
+# Set x-axis limits for each subplot
+for i in range(config.NUMBER_OF_VARIABLES):
+    axes[i].set_xlim(0, config.X_RANGE)
 
-    fig = run_plot()
+# Set y-axis label and limits for Engine Speed subplot
+axes[0].set_ylabel('Engine Speed')
+axes[0].set_ylim(config.ENGINE_SPEED_BOUNDS[0] - config.ENGINE_SPEED_BOUNDS[0], config.ENGINE_SPEED_BOUNDS[1] + config.ENGINE_SPEED_BOUNDS[0])
 
-    # Transform fig into canvas and get its raw data
+# Set y-axis label and limits for Vehicle Speed subplot
+axes[1].set_ylabel('Vehicle Speed')
+axes[1].set_ylim(config.VEHICLE_SPEED_BOUNDS[0] - config.VEHICLE_SPEED_BOUNDS[0], config.VEHICLE_SPEED_BOUNDS[1] + config.VEHICLE_SPEED_BOUNDS[0])
 
-    canvas = FigureCanvasAgg(fig)
-    size = game_settings.GAME_PLOT_SIZE
-    renderer = canvas.get_renderer()
-    raw_data = renderer.buffer_rgba()
+# Set y-axis label and limits for Gear subplot
+axes[2].set_ylabel('Gear')
+axes[2].set_ylim(config.GEAR_BOUNDS[0] - config.GEAR_BOUNDS[0], config.GEAR_BOUNDS[1] + config.GEAR_BOUNDS[0])
 
+# Open the CSV file for writing and write headers
+with open(config.CSV_FILE_PATH, mode='w', newline='') as file:
+    writer = csv.writer(file)
+    writer.writerow(['Engine Speed', 'Vehicle Speed', 'Gear'])
 
+# Initialize serial communication
+ser = serial.Serial(config.SERIAL_PORT, config.BAUDRATE)
 
-    while run :
-        
-        # Limit game FPS
+# Function to update the plot with new data
+def run_plot(frames):
+    global parameters_values, ser
 
-        clock.tick(game_settings.FPS)
+    # Read data from serial port
+    rx_data = ser.readline().decode('utf_8', 'strict').strip()
 
-        # If close window button is pressed, execution stops
+    # Split the received data into individual values
+    values = rx_data.split(',')
 
-        for event in game_settings.pg.event.get() :
-            if event.type == game_settings.pg.QUIT :
-                sys.exit()
+    # If complete data is received
+    if len(values) == 3:
+        print("Data received: ", rx_data)
 
-        # Draw background and tractor
+        # Extract engine speed, vehicle speed, and gear values
+        engine_speed = float(values[0])
+        vehicle_speed = float(values[1])
+        gear = float(values[2])
 
+        # Write the received data to the CSV file
+        with open(config.CSV_FILE_PATH, mode='a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([engine_speed, vehicle_speed, gear])
 
-        # Fetch a new fig from the plot module
+        # Append the new row to parameter values and keep only the last X_RANGE rows
+        new_row = np.array([engine_speed, vehicle_speed, gear])
+        parameters_values = np.vstack([parameters_values, new_row])
+        parameters_values = parameters_values[-config.X_RANGE:, :]
 
-        fig = run_plot()
+        # Update the scatter plots with the new data
+        for j, scatter_plot in enumerate(scatter_plots):
+            scatter_plot.set_ydata(parameters_values[:, j])
 
-        # Redraw canvas
+    # If incomplete data is received
+    else:
+        print("Incomplete data received: ", rx_data)
+        engine_speed = 0
+        vehicle_speed = 0
+        gear = 0
 
-        canvas.draw()
-
-        # Transform canvas' raw data into surface
-
-        #surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
-  
-        # Transform canvas' raw data into surface
-        #surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
-
-        # Resize the surface to match the screen size
-        #surf = game_settings.pg.transform.scale(surf, (game_settings.SCREEN_WIDTH, game_settings.SCREEN_HEIGHT))
-
-        # Draw plot
-        #game_settings.SCREEN.blit(surf, (0, 0))  # Blit the resized surface to the top-left corner of the screen
-
-        # Transform canvas' raw data into surface
-        surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
-
-        # Resize the surface to match the screen size with antialiasing
-        surf = game_settings.pg.transform.smoothscale(surf, (game_settings.SCREEN_WIDTH, game_settings.SCREEN_HEIGHT))
-
-        # Draw plot
-        game_settings.SCREEN.blit(surf, (0, 0))  # Blit the resized surface to the top-left corner of the screen
-
-
-
-        # Draw plot
-        
-        #game_settings.SCREEN.blit(surf, game_settings.PLOT_POS)
-    
-        # Update display
-
-        game_settings.pg.display.update()
-
-def run_game() :
-
-    # Set game window
-
-    game_settings.pg.display.set_caption(game_settings.CAPTION)
-
-    # Call menu method
-
-    game()
-
-    # Quit game
-
-    game_settings.pg.quit()
+    # Return scatter plots to update the animation
+    return scatter_plots
 
 if __name__ == "__main__":
-    #run_plot()
-    run_game()
+    # Create animation
+    ani = FuncAnimation(fig, run_plot, frames=range(config.X_RANGE), blit=True)
+    plt.show()

@@ -211,13 +211,17 @@ int main( void ) {
 
     // Format the output data for the LCD
     LCD_Set_Cursor( 1, 1 );
+    // Display tractor's direction
     LCD_Put_Str( dir);
+    // Display current gear
     LCD_Put_Str( " gear:");
     LCD_Put_Num( EngTrModel_Y.Gear );
     LCD_Put_Str( "      ");
     LCD_Set_Cursor( 2, 0 );
+    // Display tractor speed
     LCD_Put_Str( "TS:");
     LCD_Put_Num( trunc(EngTrModel_Y.VehicleSpeed) );
+    // Display Engine speed
     LCD_Put_Str( " ES:");
     LCD_Put_Num( trunc(EngTrModel_Y.EngineSpeed) );
     LCD_Put_Str( "    ");
