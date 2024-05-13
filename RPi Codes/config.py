@@ -2,7 +2,7 @@
 # Humberto Barrera
 # Catalina Muñoz
 # Mauricio Zavala
-# Erick Campo
+# Erick Campos
 
 # Libraries
 import os
