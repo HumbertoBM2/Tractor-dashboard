@@ -55,11 +55,31 @@ def game() :
 
         # Transform canvas' raw data into surface
 
+        #surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
+  
+        # Transform canvas' raw data into surface
+        #surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
+
+        # Resize the surface to match the screen size
+        #surf = game_settings.pg.transform.scale(surf, (game_settings.SCREEN_WIDTH, game_settings.SCREEN_HEIGHT))
+
+        # Draw plot
+        #game_settings.SCREEN.blit(surf, (0, 0))  # Blit the resized surface to the top-left corner of the screen
+
+        # Transform canvas' raw data into surface
         surf = game_settings.pg.image.frombuffer(raw_data.tobytes(), size, "RGBA")
+
+        # Resize the surface to match the screen size with antialiasing
+        surf = game_settings.pg.transform.smoothscale(surf, (game_settings.SCREEN_WIDTH, game_settings.SCREEN_HEIGHT))
+
+        # Draw plot
+        game_settings.SCREEN.blit(surf, (0, 0))  # Blit the resized surface to the top-left corner of the screen
+
+
 
         # Draw plot
         
-        game_settings.SCREEN.blit(surf, game_settings.PLOT_POS)
+        #game_settings.SCREEN.blit(surf, game_settings.PLOT_POS)
     
         # Update display
 
@@ -80,4 +100,5 @@ def run_game() :
     game_settings.pg.quit()
 
 if __name__ == "__main__":
+    #run_plot()
     run_game()

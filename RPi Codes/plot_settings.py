@@ -22,6 +22,6 @@ CSV_FILE_PATH = os.path.join(BASE_PATH, "E2Data.csv")
 
 # Serial
 
-SERIAL_PORT = "COM8"            # Windows
+SERIAL_PORT = "COM9"            # Windows
 #SERIAL_PORT = "/dev/ttyS0"     # Raspberry Pi OS (Based on Debian)
 BAUDRATE = 115200

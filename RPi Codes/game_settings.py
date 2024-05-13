@@ -24,26 +24,9 @@ CAPTION = 'Tractor Dashboard'
 
 SCREEN = pg.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
-# Assets
-
-
 # Game
 
 GAME_SPEED = 10
-
-
-# Menu
-
-
-
-
-
-
-# Background 
-
-
-# Player
-
 
 
 
@@ -51,7 +34,5 @@ GAME_SPEED = 10
 
 GAME_PLOT_SIZE = tuple(element * 100 for element in PLOT_SIZE)
 PLOT_POS = (SCREEN_WIDTH // 2 , SCREEN_HEIGHT // 2 - GAME_PLOT_SIZE[1] // 2)
-
-# Game instances
-
-
+#GAME_PLOT_SIZE = (SCREEN_WIDTH, SCREEN_HEIGHT)  # Make the plot size equal to the screen size
+#PLOT_POS = (0, 0)
