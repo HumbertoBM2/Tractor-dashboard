@@ -39,3 +39,4 @@ Before using the codes in this repository, ensure you have the following prerequ
 
 - TS indicates Tractor's speed
 - ES indicates Engine's speed
+- The direction of the tractor is shown in the top left corner.
