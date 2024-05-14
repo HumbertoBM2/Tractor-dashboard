@@ -23,11 +23,19 @@ Before using the codes in this repository, ensure you have the following prerequ
 - [STM32CubeIDE](https://www.st.com/en/development-tools/stm32cubeide.html)
 - [Python](https://www.python.org/downloads/)
 - [Raspberry Pi](https://www.raspberrypi.com/products/)
+- STM32 Cube IDE
 - C Compiler (e.g., GCC)
-- A potentiometer
+- 2 potentiometers (1 for the LCD and 1 to control the tractor's acceleration)
 - An LCD (Liquid Crystal Display)
 - A breadboard
 - An FTDI module
 - A matrix keypad
 
 ## Usage
+
+## Media
+
+![Demopic](demopic.jpg)
+
+- TS indicates Tractor's speed
+- ES indicates Engine's speed
