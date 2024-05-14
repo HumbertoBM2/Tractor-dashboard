@@ -89,3 +89,10 @@ Feel free to explore and modify the code as needed for your project. For any iss
 - TS indicates Tractor's speed
 - ES indicates Engine's speed
 - The direction of the tractor is shown in the top left corner.
+
+
+
+
+![plotdemo](plotdemo.png)
+
+
