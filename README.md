@@ -31,16 +31,28 @@ The circuit is connected to the MCU, coded in C to receive data from the potenti
 The repository is organized into three main folders:
 
 1. **FTDI Codes:**
-   - Contains an Arduino code to use if an FTDI module is unavailable. The code can be uploaded to an Arduino to utilize its RX and TX ports.
+    - Contains an Arduino code to use if an FTDI module is unavailable. The code can be uploaded to an Arduino to utilize its RX and TX ports.
 
 2. **RPi Codes:**
    - Contains two Python scripts:
      - `config.py`: Contains plot characteristics and serial communication settings between the STM32 and the RPi.
      - `main.py`: Contains plotting and saving functions. This is the script you need to run.
+    
+3. **RPi Codes V2:**
+    - Contains optimized versions of the scripts in the `RPi Codes` folder. These scripts utilize threading and queues to ensure real-time updating of the graphs.
+      - `config.py`: Contains plot characteristics and serial communication settings between the STM32 and the RPi.
+      - `main.py`: Contains plotting and saving functions, optimized for real-time performance.
 
-3. **STM32 Codes:**
-   - Contains all the header and source files used to code the MCU and the circuit components.
-   - The file to compile in the STM32 Cube IDE is `main.c`.
+5. **STM32 Codes:**
+     - Contains all the header and source files used to code the MCU and the circuit components.
+     - The file to compile in the STM32 Cube IDE is `main.c`.
+  
+6. **STM32 Codes RTOS:**
+    - Contains an RTOS-supported version of the STM32 project. This modification features:
+      - Priority scheduling.
+      - Intercommunication between tasks.
+      - Shared resources management.
+      - Capability of simulating the tractor's blinkers with LEDs.
 
 
 ## Prerequisites
@@ -53,7 +65,7 @@ Before using the codes in this repository, ensure you have the following prerequ
   - numpy
 - [Raspberry Pi](https://www.raspberrypi.com/products/)
 - STM32 Cube IDE
-- C Compiler (e.g., GCC)
+- 2 LEDs to simulate the tractor's blinkers.
 - 2 potentiometers (1 for the LCD and 1 to control the tractor's acceleration)
 - An LCD (Liquid Crystal Display)
 - A breadboard
