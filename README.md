@@ -14,8 +14,9 @@
 ## Overview
 
 The simulation project involves creating a physical and virtual dashboard for a tractor using various components:
-- **Physical Simulation:** Includes a breadboard, 2 potentiometers, 1 LCD, a matrix keypad, and various jumper cables.
+- **Physical Simulation:** Includes a breadboard, 2 potentiometers, 2 LEDS, 1 LCD, a matrix keypad, and various jumper cables.
   - **LCD:** Displays data such as current gear, direction, speed, and engine speed of the tractor.
+  - **LEDs:** Used to simulate the tractor's blinkers.
   - **Potentiometers:** 
     - One controls the LCD's brightness.
     - The other functions as the tractor's throttle.
@@ -24,7 +25,7 @@ The simulation project involves creating a physical and virtual dashboard for a 
     - Number 4 changes the tractor's direction to the left.
     - Number 6 changes the tractor's direction to the right.
 
-The circuit is connected to the MCU, coded in C to receive data from the potentiometer, interpret it as tractor values (speed, gear, etc.), display it on the LCD, and transmit it to the RPi using UART protocol. The RPi, programmed in Python, receives the data, creates a figure with 3 animated graphs using Matplotlib, and saves the data in a `.csv` file.
+The circuit is connected to the MCU, coded in C to receive data from the potentiometer, interpret it as tractor values (speed, gear, etc.), display it on the LCD, and transmit it to the RPi using UART protocol. The MCU also features a real time operating system (RTOS) which helps to schedule and monitor tasks. The RPi, programmed in Python, receives the data, creates a figure with 3 animated graphs using Matplotlib, and saves the data in a `.csv` file.
 
 ## Repository Contents
 
@@ -96,15 +97,26 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ## Media
 
+### Schematic 
+
+### Circuit without the blinkers (LEDs)
+
 ![Demopic](demopic.jpg)
 
-- TS indicates Tractor's speed
-- ES indicates Engine's speed
+- TS indicates Tractor's speed.
+- ES indicates Engine's speed.
 - The direction of the tractor is shown in the top left corner.
 
+### Circuit with blinkers
 
+- Now the LCD displays the units for each parameter. 
 
-
+### Raw Python graphs generated with the received data 
 ![plotdemo](plotdemo.png)
+
+### Python graphs (GUI)
+
+
+### Task scheduling (RTOS)
 
 
