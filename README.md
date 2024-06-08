@@ -109,7 +109,7 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ### Circuit with blinkers
 
-- Now the LCD displays the units for each parameter. 
+- Th indicates the throttle's value. 
 
 ### Raw Python graphs generated with the received data 
 ![plotdemo](plotdemo.png)
