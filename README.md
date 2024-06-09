@@ -109,7 +109,9 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ### Circuit with blinkers
 
-- Th indicates the throttle's value. 
+- Th indicates the throttle's value.
+- Units are now shown for each parameter.
+- The tractor's direction is now represented with symbols (^,<,>,*).
 
 ### Raw Python graphs generated with the received data 
 ![plotdemo](plotdemo.png)
