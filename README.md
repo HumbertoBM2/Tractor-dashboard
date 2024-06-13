@@ -125,6 +125,8 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ![gui](gui.png)
 
+- Bidirectional communication was implememted between the MCU and the MPU.
+
 ### Task scheduling (RTOS)
 
 
