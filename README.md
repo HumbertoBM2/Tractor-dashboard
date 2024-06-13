@@ -99,6 +99,8 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ### Schematic 
 
+![schematic](schematic.jpg)
+
 ### Circuit without the blinkers (LEDs)
 
 ![Demopic](demopic.jpg)
