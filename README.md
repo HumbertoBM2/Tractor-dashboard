@@ -111,6 +111,9 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ### Circuit with blinkers
 
+![Demopicblinkers](circuitblinkers.jpg)
+![Demopiclcd](lcd.jpg)
+
 - Th indicates the throttle's value.
 - Units are now shown for each parameter.
 - The tractor's direction is now represented with symbols (^,<,>,*).
@@ -120,6 +123,7 @@ Feel free to explore and modify the code as needed for your project. For any iss
 
 ### Python graphs (GUI)
 
+![gui](gui.png)
 
 ### Task scheduling (RTOS)
 
