@@ -43,16 +43,22 @@ The repository is organized into three main folders:
     - Contains optimized versions of the scripts in the `RPi Codes` folder. These scripts utilize threading and queues to ensure real-time updating of the graphs.
       - `config.py`: Contains plot characteristics and serial communication settings between the STM32 and the RPi.
       - `main.py`: Contains plotting and saving functions, optimized for real-time performance.
+     
+4. **RPi Codes V3:**
+    - Contains the same optimized versions of the scripts in the `RPi Codes V2` folder. However, a GUI created with Tkinter was included. Also, bidirectional communication between the MCU and the MPU was implemented. 
 
-5. **STM32 Codes:**
+6. **STM32 Codes:**
      - Contains all the header and source files used to code the MCU and the circuit components.
      - The file to compile in the STM32 Cube IDE is `main.c`.
   
-6. **STM32 Codes RTOS:**
+7. **STM32 V2 Codes:**
+    - Contains the same scripts from `STM32 Codes`, but this version includes the capability of simulating the tractor's blinkers with LEDs.
+  
+9. **STM32 Codes RTOS:**
     - Contains an RTOS-supported version of the STM32 project. This modification features:
       - Priority scheduling.
       - Intercommunication between tasks.
-      - Shared resources management.
+      - Shared resources management (USART).
       - Capability of simulating the tractor's blinkers with LEDs.
 
 
